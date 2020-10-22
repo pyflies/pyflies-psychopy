@@ -1,7 +1,7 @@
 # pyflies-psychopy
 
-Generator for [PsychoPy](https://www.psychopy.org/) experiments from [pyFlies]()
-models.
+Generator for [PsychoPy](https://www.psychopy.org/) experiments from
+[pyFlies](https://github.com/pyflies/pyflies) models.
 
 When this project is installed you will have a textX registered generator that
 can generate PsychoPy experiment from pyFlies models (`.pf` files). You can
