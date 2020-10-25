@@ -51,7 +51,9 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     template_file = join(dirname(__file__), 'templates', 'main.py.jinja')
 
     if output_path is None:
-        output_file = basename(splitext(model._tx_filename)[0]) + '.py'
+        input_file = model._tx_filename
+        output_file = join(dirname(input_file),
+                           basename(splitext(input_file)[0]) + '.py')
     else:
         output_file = output_path
 
