@@ -103,6 +103,14 @@ def pretty(obj, indent=0):
 
 def pprint_trial(trial):
     trial_data = {}
+
+    # Add plain context variables we want in the data output
+    a = trial.get_context()
+    trial_data['vars'] = { k: as_str(v) if type(v) in [Symbol, str] else v
+                           for k, v in trial.get_context().items()
+                           if k not in ['random', 'practice']
+                           and type(v) in [Symbol, str, int, float, bool] }
+
     for phase in ['ph_fix', 'ph_exec', 'ph_error', 'ph_correct']:
         phase_comps = getattr(trial, phase)
         if phase_comps:

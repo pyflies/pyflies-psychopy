@@ -186,7 +186,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
     responses.
     """
 
-    def execute_phase(components, should_record=False):
+    def execute_phase(components, variables, should_record=False):
         if not components:
             return
         # reset timers
@@ -321,6 +321,11 @@ def execute_test(test_trials, test_components, random=False, practice=False):
 
         # Register interesting data if not a practice run
         if not practice:
+
+            # Register trial variables values
+            for k, v in variables.items():
+                thisExp.addData(k, v) 
+
             for component in components:
                 cinst = component['inst']
                 ctype = component['type']
@@ -398,7 +403,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
 
         for phase in ['ph_fix', 'ph_exec']:
             if phase in trial:
-                correct = execute_phase(trial[phase], should_record=phase=='ph_exec')
+                correct = execute_phase(trial[phase], trial['vars'], should_record=phase=='ph_exec')
 
         if correct and 'ph_correct' in trial:
             execute_phase(trial['ph_correct'])
