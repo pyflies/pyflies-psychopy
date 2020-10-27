@@ -319,45 +319,47 @@ def execute_test(test_trials, test_components, random=False, practice=False):
             elif 'audible' in ctype:
                 cinst.stop()
 
-        # Register interesting data
-        for component in components:
-            cinst = component['inst']
-            ctype = component['type']
+        # Register interesting data if not a practice run
+        if not practice:
+            for component in components:
+                cinst = component['inst']
+                ctype = component['type']
 
-            def datap(attr, name=None):
-                name = attr if name is None else name
-                cname = cinst.model_name if cinst.model_name else cinst.cname
-                col_name = '{}.{}'.format(cname, name)
-                value = getattr(cinst, attr)
-                if type(value) is list:
-                    value = value[0]
-                return (col_name, value)
+                def datap(attr, name=None):
+                    name = attr if name is None else name
+                    cname = cinst.model_name if cinst.model_name else cinst.cname
+                    col_name = '{}.{}'.format(cname, name)
+                    value = getattr(cinst, attr)
+                    if type(value) is list:
+                        value = value[0]
+                    return (col_name, value)
 
-            # component parameters for this trial
-            for pname, pval in component['params'].items():
-                cname = cinst.model_name if cinst.model_name else cinst.cname
-                thisExp.addData('{}.{}'.format(cname, pname), pval)
+                # component parameters for this trial
+                for pname, pval in component['params'].items():
+                    cname = cinst.model_name if cinst.model_name else cinst.cname
+                    if type(pval) is tuple: pval = str(pval)
+                    thisExp.addData('{}.{}'.format(cname, pname), pval)
 
-            if 'keyboard' in ctype:
-                thisExp.addData(*datap('key_name', 'name'))
-                thisExp.addData(*datap('key_rt', 'rt'))
-                thisExp.addData(*datap('key_correct', 'correct'))
-            elif 'mouse' in ctype:
-                for dname in ['x', 'y', 'leftButton', 'midButton',
-                              'rightButton', 'time', 'clicked_name']:
-                    thisExp.addData(*datap(dname))
-                thisExp.addData(*datap('tStart', 'started'))
-                thisExp.addData(*datap('tStopped', 'stopped'))
+                if 'keyboard' in ctype:
+                    thisExp.addData(*datap('key_name', 'name'))
+                    thisExp.addData(*datap('key_rt', 'rt'))
+                    thisExp.addData(*datap('key_correct', 'correct'))
+                elif 'mouse' in ctype:
+                    for dname in ['x', 'y', 'leftButton', 'midButton',
+                                  'rightButton', 'time', 'clicked_name']:
+                        thisExp.addData(*datap(dname))
+                    thisExp.addData(*datap('tStart', 'started'))
+                    thisExp.addData(*datap('tStop', 'stopped'))
 
-            elif cinst.model_name is not None:
-                # If we defined name for component in the model we shall record
-                # its start/stop times/frames
-                thisExp.addData(*datap('tStartRefresh', 'started'))
-                thisExp.addData(*datap('frameNStart', 'startFrame'))
-                thisExp.addData(*datap('tStopRefresh', 'stopped'))
-                thisExp.addData(*datap('frameNStop', 'stopFrame'))
+                elif cinst.model_name is not None:
+                    # If we defined name for component in the model we shall record
+                    # its start/stop times/frames
+                    thisExp.addData(*datap('tStartRefresh', 'started'))
+                    thisExp.addData(*datap('frameNStart', 'startFrame'))
+                    thisExp.addData(*datap('tStopRefresh', 'stopped'))
+                    thisExp.addData(*datap('frameNStop', 'stopFrame'))
 
-        thisExp.nextEntry()
+            thisExp.nextEntry()
 
         return correct_response
 
