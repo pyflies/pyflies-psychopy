@@ -44,6 +44,9 @@ If routine is of test type than we have arbitrary number of components.
       {{trial | pprint_trial}},
     {% endfor %}
 ]
+  {% else %}
+# Content for screen {{inst.name}}
+{{inst.name}}_{{inst_no}} = r'''{{inst.content}}'''
   {% endif %}
 {% endmacro %}
 #!/usr/bin/env python
@@ -71,6 +74,7 @@ from __future__ import absolute_import, division
 
 import os  # handy system and path functions
 import sys  # to get file system encoding
+import re
 from random import sample
 
 import numpy as np  # whole numpy lib is available, prepend 'np.'
@@ -143,6 +147,13 @@ defaultKeyboard = keyboard.Keyboard()
 {% endfor %}
 
 
+def unindent(s):
+    """
+    Remove whitespaces from the beginning of each line of the string s.
+    """
+    return re.sub(r'\n\s+', r'\n', s)
+
+
 def get_param(comp, param_name):
     """
     Returns component param for the given name
@@ -153,8 +164,9 @@ def get_param(comp, param_name):
         return None
 
 
-def execute_screen(screen, duration):
+def execute_screen(screen, content, duration):
     "Displays the given screen"
+    screen.setText(unindent(content))
     screen.setAutoDraw(True)
     win.flip()
 
@@ -402,7 +414,7 @@ execute_test({{inst.name}}_{{loop.index}}, {{inst.spec.name}}_components
              {%- if inst.random %}, random=True{% endif %}
              {%- if inst.practice %}, practice=True{% endif %})
   {% else %}
-execute_screen({{inst.name}}, {{inst.duration|duration}})
+execute_screen({{inst.name}}, {{inst.name}}_{{loop.index}}, {{inst.duration|duration}})
   {% endif %}
 {% endfor %}
 
