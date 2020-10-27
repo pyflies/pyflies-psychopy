@@ -186,7 +186,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
     responses.
     """
 
-    def execute_phase(components, variables, should_record=False):
+    def execute_phase(components, variables=None, should_record=False):
         if not components:
             return
         # reset timers
@@ -320,7 +320,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
                 cinst.stop()
 
         # Register interesting data if not a practice run
-        if not practice:
+        if not practice and should_record:
 
             # Register trial variables values
             for k, v in variables.items():
