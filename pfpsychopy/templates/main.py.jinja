@@ -22,7 +22,7 @@ If routine is of test type than we have arbitrary number of components.
 # Initialize components for {{routine.name}} {{routine|type|replace("Type", "")|lower}}
 {{routine.name}}_clock = core.Clock()
 {% if routine|type == 'ScreenType' -%}
-{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}', height=0.05,
+{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}', height=0.08,
     text=r'''{{routine.content}}''')
 {% else %}
   {% for component in routine.components -%}
@@ -167,6 +167,8 @@ def get_param(comp, param_name):
 def execute_screen(screen, content, duration):
     "Displays the given screen"
     screen.setText(unindent(content))
+    # Calculate font size based on the content number of lines
+    screen.setHeight(min(1.5 / len(content.splitlines()), 0.08))
     screen.setAutoDraw(True)
     win.flip()
 
