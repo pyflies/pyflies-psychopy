@@ -434,7 +434,7 @@ execute_screen({{inst.name}}, {{inst.name}}_{{loop.index}}, {{inst.duration|dura
 win.flip()
 
 # these shouldn't be strictly necessary (should auto-save)
-thisExp.saveAsWideText(filename+'.csv', delim='auto')
+thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
 # make sure everything is closed down
