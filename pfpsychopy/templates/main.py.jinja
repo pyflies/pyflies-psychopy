@@ -151,7 +151,7 @@ def unindent(s):
     """
     Remove whitespaces from the beginning of each line of the string s.
     """
-    return re.sub(r'\n\s+', r'\n', s)
+    return re.sub(r'\n[\t ]+', r'\n', s)
 
 
 def get_param(comp, param_name):
@@ -166,9 +166,11 @@ def get_param(comp, param_name):
 
 def execute_screen(screen, content, duration):
     "Displays the given screen"
-    screen.setText(unindent(content))
+
     # Calculate font size based on the content number of lines
-    screen.setHeight(min(1.5 / len(content.splitlines()), 0.08))
+    screen.setHeight(min(0.5 / len(content.splitlines()), 0.08))
+
+    screen.setText(unindent(content))
     screen.setAutoDraw(True)
     win.flip()
 
