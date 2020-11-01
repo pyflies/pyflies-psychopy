@@ -17,6 +17,10 @@ and you can generate PsychoPy experiment by:
 textx generate <your pyflies model.pf> --target psychopy --overwrite
 ```
 
+For the details see [running generators
+section](https://pyflies.github.io/pyflies/latest/generators/) of pyFlies
+documentation.
+
 
 # Credits
 
