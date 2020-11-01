@@ -21,7 +21,13 @@ please take a look at related PRs and issues and see if the change affects you.
 ### Changed
 
 
-[Unreleased]: https://github.com/CHANGEME/pyflies-psychopy/commits/master
+## [0.1.0] (released: 2020-11-01)
+
+- Initial release
+
+
+[Unreleased]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/pyflies/pyflies-psychopy/compare/360ff9bea62834c63...0.1.0
 
 
 [keepachangelog]: https://keepachangelog.com/

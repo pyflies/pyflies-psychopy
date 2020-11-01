@@ -12,7 +12,7 @@ from pyflies.tools import resolve_params
 from pyflies.lang.common import Symbol, Point
 
 
-__version__ = "0.1.0.dev"
+__version__ = "0.1.0"
 
 
 # These are settings that can be used in the `target` configuration. A default
