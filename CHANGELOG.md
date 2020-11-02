@@ -14,11 +14,10 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
-### Added
 
-### Fixed
+## [0.1.1] (released: 2020-11-02)
 
-### Changed
+- Fix CSV generator file delimiter
 
 
 ## [0.1.0] (released: 2020-11-01)
@@ -26,7 +25,8 @@ please take a look at related PRs and issues and see if the change affects you.
 - Initial release
 
 
-[Unreleased]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/pyflies/pyflies-psychopy/compare/360ff9bea62834c63...0.1.0
 
 
