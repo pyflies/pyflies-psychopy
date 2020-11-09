@@ -22,8 +22,7 @@ If routine is of test type than we have arbitrary number of components.
 # Initialize components for {{routine.name}} {{routine|type|replace("Type", "")|lower}}
 {{routine.name}}_clock = core.Clock()
 {% if routine|type == 'ScreenType' -%}
-{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}', height=0.08,
-    text=r'''{{routine.content}}''')
+{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}', height=0.08, text='')
 {% else %}
   {% for component in routine.components -%}
 {{component.name}} = {{init_component(component)}}
