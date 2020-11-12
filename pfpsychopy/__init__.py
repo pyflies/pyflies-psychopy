@@ -1,9 +1,14 @@
-import re
-import click
+"""This module implements mapping from pyFlies to PsychoPy.
+
+It configures and calls Jinja template engine and uses a template to render the
+target file.
+
+"""
 import datetime
-import pprint
 from itertools import chain
 from os.path import basename, splitext, join, dirname
+
+import click
 from textx import generator
 from textxjinja import textx_jinja_generator
 
@@ -66,7 +71,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     unresolved = resolve_params(model, settings)
     if unresolved:
         click.echo('Warning: these symbols where not resolved by '
-                'the target configuration: {}'.format(unresolved))
+                   'the target configuration: {}'.format(unresolved))
 
     filters = {
         'comp_type': comp_type,
@@ -83,7 +88,8 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     config = {'m': model, 's': settings, 'now': now}
 
     # call the generator
-    textx_jinja_generator(template_file, output_file, config, overwrite, filters)
+    textx_jinja_generator(template_file, output_file, config, overwrite,
+                          filters)
 
 
 # Jinja filters and mappings pyFlies -> PsychoPy
@@ -92,8 +98,8 @@ def pretty(obj, indent=0):
     p = ''
     sindent = ' ' * indent
     if isinstance(obj, dict):
-        p += '{' + ',\n{}'.format(sindent).join(["'{}': {}".format(k, pretty(v, indent + 4))
-                                                 for k, v in obj.items()]) + '}'
+        p += '{' + ',\n{}'.format(sindent).join(
+            ["'{}': {}".format(k, pretty(v, indent + 4)) for k, v in obj.items()]) + '}'
     elif isinstance(obj, list):
         p += '[\n{}'.format(sindent) + \
             ',\n{}'.format(sindent).join([pretty(x, indent + 4) for x in obj]) + ']'
@@ -101,15 +107,16 @@ def pretty(obj, indent=0):
         p += str(obj)
     return p
 
+
 def pprint_trial(trial):
     trial_data = {}
 
     # Add plain context variables we want in the data output
     a = trial.get_context()
-    trial_data['vars'] = { k: as_str(v) if type(v) in [Symbol, str] else v
-                           for k, v in trial.get_context().items()
-                           if k not in ['random', 'practice']
-                           and type(v) in [Symbol, str, int, float, bool] }
+    trial_data['vars'] = {k: as_str(v) if type(v) in [Symbol, str] else v
+                          for k, v in trial.get_context().items()
+                          if k not in ['random', 'practice']
+                          and type(v) in [Symbol, str, int, float, bool]}
 
     for phase in ['ph_fix', 'ph_exec', 'ph_error', 'ph_correct']:
         phase_comps = getattr(trial, phase)
@@ -166,6 +173,7 @@ def duration(obj):
     """
     return obj / 1000
 
+
 def comp_type(comp):
     """
     Mapping of component types
@@ -192,6 +200,7 @@ def comp_type(comp):
 def as_str(o):
     return '\'{}\''.format(o)
 
+
 def default_params(comp):
     """
     Returns a string of default parameters used by the component
@@ -214,11 +223,13 @@ def comp_default_params(comp):
                             ((param_name(p), param_value(p))
                              for p in params_used(params_constant(comp.params))))])
 
+
 def params_constant(params):
     """
     Filter list of parameters and return only constant.
     """
     return [p for p in params if p.is_constant]
+
 
 def params_used(params):
     """
@@ -298,9 +309,6 @@ def param_value(param):
     # For injected parameters we won't do any mapping
     if not hasattr(param, 'parent'):
         return param.value
-
-    value = param.value
-    comp = param.parent.type.name
 
     if type(param.value) is Point:
         return point(param.value)
