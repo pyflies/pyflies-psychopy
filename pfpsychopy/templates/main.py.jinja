@@ -72,7 +72,6 @@ Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, L
 from __future__ import absolute_import, division
 
 import os  # handy system and path functions
-import sys  # to get file system encoding
 import re
 from random import sample
 
@@ -110,10 +109,10 @@ filename = os.path.join(_thisDir, u'data',
 
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
-    extraInfo=expInfo, runtimeInfo=None,
-    originPath=__file__,
-    savePickle=True, saveWideText=True,
-    dataFileName=filename)
+                                 extraInfo=expInfo, runtimeInfo=None,
+                                 originPath=__file__,
+                                 savePickle=True, saveWideText=True,
+                                 dataFileName=filename)
 # save a log file for detail verbose info
 logFile = logging.LogFile(filename+'.log', level=logging.EXP)
 logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a file
