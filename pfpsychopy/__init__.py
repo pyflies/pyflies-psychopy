@@ -39,7 +39,6 @@ default_settings = {
     'resolution': (1024, 768),
     'background': 'black',
     'frameTolerance': 0.001,
-    'soundBackend': 'backend_ptb.SoundPTB',
 }
 
 # Settings from the model target configuration
@@ -185,8 +184,8 @@ def comp_type(comp):
         'cross': 'visual.ShapeStim',
         'line': 'visual.Line',
         'image': 'visual.ImageStim',
-        'sound': 'sound.%s' % settings['soundBackend'],
-        'audio': 'sound.%s' % settings['soundBackend'],
+        'sound': 'sound.Sound',
+        'audio': 'sound.Sound',
         'mouse': 'event.Mouse',
         'keyboard': 'keyboard.Keyboard',
     }.get(comp.type.name)
