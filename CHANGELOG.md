@@ -14,6 +14,10 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+- Use of `sound.Sound` class for audio. Back-end is configured in user
+  preferences.
+- Added target config parameters in README.
+- Various fixes.
 
 ## [0.1.1] (released: 2020-11-02)
 
