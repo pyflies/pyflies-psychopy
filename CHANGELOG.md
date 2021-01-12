@@ -14,14 +14,24 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+[Unreleased]: https://github.com/pyflies/pyflies-psychopy/compare/0.2.0...HEAD
+
+
+## [0.2.0] (released: 2021-01-12)
+
 - Use of `sound.Sound` class for audio. Back-end is configured in user
   preferences.
 - Added target config parameters in README.
 - Various fixes.
 
+[0.2.0]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.1...0.2.0
+
+
 ## [0.1.1] (released: 2020-11-02)
 
 - Fix CSV generator file delimiter
+
+[0.1.1]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.0...0.1.1
 
 
 ## [0.1.0] (released: 2020-11-01)
@@ -29,8 +39,6 @@ please take a look at related PRs and issues and see if the change affects you.
 - Initial release
 
 
-[Unreleased]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.1...HEAD
-[0.1.1]: https://github.com/pyflies/pyflies-psychopy/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/pyflies/pyflies-psychopy/compare/360ff9bea62834c63...0.1.0
 
 
