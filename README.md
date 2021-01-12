@@ -22,6 +22,26 @@ section](https://pyflies.github.io/pyflies/latest/generators/) of pyFlies
 documentation.
 
 
+# Configuration
+
+PsychoPy can be configured in [userPrefs.cfg
+file](https://www.psychopy.org/general/prefs.html#preferences). Its location
+[varies by
+machine](https://www.psychopy.org/troubleshooting.html#cleaning-preferences-and-app-data).
+
+You can use `Preferences` dialog in the PsychoPy GUI for the configuration.
+
+
+# Parameters in the `target` configuration block
+
+See `pfpsychopy.default_settings`.
+
+- `resolution: Point` - Screen/window resolution, default is `(1024, 768)`
+- `fullScreen: boolean` - should the experiment run in full screen, default is `false`
+- `background: string` - background color, default is `black`
+- `frameTolerance` - tolerance in frame duration in seconds, default is `0.001`
+
+
 # Credits
 
 Initial project layout generated with `textx startproject`.
